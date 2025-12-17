@@ -44,3 +44,7 @@ public class LonelyNumbers {
     }
 
 }
+// Problem: Lonely Numbers in ArrayList (MEDIUM)
+// Approach: Sort ArrayList and check adjacent elements
+// Time Complexity: O(n log n)
+// Space Complexity: O(n) for output list
