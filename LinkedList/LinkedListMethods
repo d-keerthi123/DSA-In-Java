@@ -13,8 +13,8 @@ public class LinkedList1 {
             this.next=null;
         }
     }
-    public   Node head; // REMEMBER :dont make head and tail static 
-    public   Node tail;
+    public  static Node head;  
+    public  static Node tail;
     public static int size;
 
     public void addFirst(int data){
@@ -181,6 +181,51 @@ public class LinkedList1 {
         return;
     }
 
+// slow fast concept
+    public static Node findMid(Node head){
+        Node slow=head;
+        Node fast=head;
+        while( fast != null && fast.next != null){
+            slow=slow.next; //+1
+            fast=fast.next.next;//+2
+        }
+        return slow; // mid is slow
+
+    }
+
+    //check palindrome or not
+    public static boolean checkPalindrome(){
+        //base case
+        if(head==null || head.next == null){
+            return true;
+        }
+        //find mid
+        Node midNode=findMid(head);
+
+        //reverse 2nd half of linkedlist
+        Node prev= null;
+        Node curr=midNode;
+        Node next;
+        while(curr != null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        Node right=prev; // right half head
+        Node left=head;
+        //check left half = right half??
+        while( right != null ){
+            if(left.data != right.data){
+                return false;
+            }
+            left=left.next;
+            right=right.next;
+        }
+        return true;
+        
+    }
+
     public static void main(String[] args) {
         LinkedList1 ll=new LinkedList1();
         ll.addFirst(2);
@@ -200,8 +245,9 @@ public class LinkedList1 {
 
         // ll.reverse();
         // ll.print();
-        ll.deleteNthFromEnd(3);
-        ll.print();
+        //ll.deleteNthFromEnd(3);
+        //ll.print();
+        System.out.println(checkPalindrome());
     }
 
 }
