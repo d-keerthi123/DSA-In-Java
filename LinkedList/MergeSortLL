@@ -27,7 +27,7 @@ public class MergeSortLL {
     }
 
     public void addFirst(int data){
-        //step 1 - craete new node
+        //step 1 - create new node
         Node newNode=new Node(data);
         
         if(head == null){
