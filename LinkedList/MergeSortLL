@@ -1,0 +1,116 @@
+import java.util.*;
+public class MergeSortLL {
+    static class LinkedList{
+        static class Node{
+        int data;
+        Node next;
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public    Node head; // REMEMBER :dont make head and tail static 
+    public    Node tail;
+
+    public void print(){
+        //if the ll is empty
+        if(head == null){
+            System.out.println("linked list is empty");
+            return;
+        }
+        Node temp=head;
+        while(temp != null){
+            System.out.print(temp.data + "--> ");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public void addFirst(int data){
+        //step 1 - craete new node
+        Node newNode=new Node(data);
+        
+        if(head == null){
+            head=tail=newNode;
+            return;
+        }
+        // step 2 - newNode next= head
+        newNode.next = head; //link
+
+        // step 3 - head = newNode
+        head= newNode;
+    }
+
+
+    public static Node getMid(Node head){
+        Node slow=head;
+        Node fast=head.next;
+        while( fast != null && fast.next != null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow; // slow is the mid
+    }
+    public static Node mergeSort(Node head){
+        if(head == null || head.next==null){
+            return head;
+        }
+        //find mid
+        Node mid=getMid(head);
+
+        //mergeSort - left and right parts
+        Node RightHead=mid.next;
+        mid.next=null;
+        Node newLeft=mergeSort(head);
+        Node newRight=mergeSort(RightHead);
+
+        //merge
+        return merge(newLeft,newRight);
+    }
+    public static  Node merge(Node head1, Node head2) {
+        Node mergedLL=new Node(-1);
+        Node temp=mergedLL;
+        while(head1 != null && head2 != null){
+            if(head1.data <= head2.data){
+                temp.next=head1;
+                head1=head1.next;
+                temp=temp.next;
+            }
+            else{
+                temp.next=head2;
+                head2=head2.next;
+                temp=temp.next;
+            }
+        }
+        //for remaining elements
+        while(head1 != null){
+            temp.next=head1;
+            head1=head1.next;
+            temp=temp.next;
+        }
+        while(head2 != null){
+            temp.next=head2;
+            head2=head2.next;
+            temp=temp.next;
+        }
+
+        return mergedLL.next;
+        
+    }
+}
+
+    public static void main(String[] args) {
+        LinkedList l1=new LinkedList();
+        l1.addFirst(4);
+        l1.addFirst(1);
+        l1.addFirst(2);
+        l1.addFirst(3);
+        l1.addFirst(5);
+        
+        l1.print();
+        l1.head=LinkedList.mergeSort(l1.head);
+        l1.print();
+    }
+}
+
+
