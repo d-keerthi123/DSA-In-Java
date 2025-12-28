@@ -1,5 +1,5 @@
-//Time complexity - O(k x n)
-//Space Complexity - O(n) // bcz its recursive
+//Time Complexity: O(N log K)
+//Space Complexity: O(N)  // recursion stack from mergeTwoLists
 
 
 public class MergeK {
@@ -33,13 +33,34 @@ public class MergeK {
         return result;
     }
 
-    public static Node mergeK(Node[] lists, int k){
+    //public static Node mergeK(Node[] lists, int k){  // Time complexity - O( k n ) bcz of thsi
         Node result= lists[0];
         for(int i=1;i<k;i++){
             result=mergeTwoLists(result, lists[i]);
         }
         return result;
     }
+
+    // optimized mergeK
+    public static Node mergeK(Node[] lists){
+        int n=lists.length;
+        if(n==0){
+            return null;
+        }
+        while(n>1){
+            int i=0;
+            int j=n-1;
+            while(i<j){
+                lists[i]=mergeTwoLists(lists[i],lists[j]);
+                i++;
+                j--;
+
+            }
+            n=(n+1)/2; // decrease no of lists
+        }
+        return lists[0];
+    }
+
     public static void main(String[] args) {
         Node l1=new Node(1);
         l1.next=new Node(5);
