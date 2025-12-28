@@ -13,7 +13,7 @@ class LinkedList{
     public static int size;
 
     public void addLast(int data){
-        //step 1 - craete new node
+        //step 1 - create new node
         Node newNode=new Node(data);
         size++;
         if(head == null){
