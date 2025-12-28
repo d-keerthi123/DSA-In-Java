@@ -1,4 +1,4 @@
-//LinkedList basics - has methods like addFirst, addlast ,print , add, size, search( iterative & recursive), reverse , deleteNthFromEnd
+//LinkedList basics - has methods like addFirst, addlast ,print , add, size, search( iterative & recursive), reverse , deleteNthFromEnd , check palindrome or not
 
 
 
