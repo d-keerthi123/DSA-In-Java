@@ -1,3 +1,6 @@
+// Time complexity - O(nlogn)
+//space complexity - O(n)
+
 import java.util.*;
 public class MergeSortLL {
     static class LinkedList{
