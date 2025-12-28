@@ -1,0 +1,66 @@
+//Time complexity - O(k x n)
+//Space Complexity - O(n) // bcz its recursive
+
+
+public class MergeK {
+    static class Node{
+        int data;
+        Node next;
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public Node head;
+    public Node tail;
+
+    public static Node mergeTwoLists(Node l1, Node l2){
+        Node result=null;
+        if(l1 == null){
+            return l2;
+        }
+        if(l2 == null){
+            return l1;
+        }
+
+        if(l1.data <= l2.data){
+            result=l1;
+            result.next=mergeTwoLists(l1.next, l2);
+        }else{
+            result=l2;
+            result.next=mergeTwoLists(l1, l2.next);
+        }
+        return result;
+    }
+
+    public static Node mergeK(Node[] lists, int k){
+        Node result= lists[0];
+        for(int i=1;i<k;i++){
+            result=mergeTwoLists(result, lists[i]);
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        Node l1=new Node(1);
+        l1.next=new Node(5);
+
+        Node l2=new Node(3);
+        l2.next=new Node(6);
+
+        Node l3=new Node(4);
+        l3.next=new Node(7);
+
+        Node[] lists= {l1,l2,l3};
+        Node head = mergeK(lists, lists.length);
+        
+        // print 
+        Node temp=head;
+        while(temp != null){
+            System.out.print(temp.data + "--> ");
+            temp=temp.next;
+        }
+        System.out.println("null");
+
+    }
+
+}
