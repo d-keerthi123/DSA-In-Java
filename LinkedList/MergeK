@@ -1,5 +1,5 @@
 //Time Complexity: O(N log K)
-//Space Complexity: O(N)  // recursion stack from mergeTwoLists
+//Space Complexity: O(1)  
 
 
 public class MergeK {
@@ -14,34 +14,60 @@ public class MergeK {
     public Node head;
     public Node tail;
 
-    public static Node mergeTwoLists(Node l1, Node l2){
-        Node result=null;
-        if(l1 == null){
-            return l2;
-        }
-        if(l2 == null){
-            return l1;
+    // public static Node mergeTwoLists(Node l1, Node l2){  // SC-O(N) recursion stack from mergeTwoLists
+    //     Node result=null;
+    //     if(l1 == null){
+    //         return l2;
+    //     }
+    //     if(l2 == null){
+    //         return l1;
+    //     }
+
+    //     if(l1.data <= l2.data){
+    //         result=l1;
+    //         result.next=mergeTwoLists(l1.next, l2);
+    //     }else{
+    //         result=l2;
+    //         result.next=mergeTwoLists(l1, l2.next);
+    //     }
+    //     return result;
+    // }
+
+// Optimized mergeTwoLists SC- O(1)
+
+     public static Node mergeTwoLists(Node l1, Node l2){
+        Node dummy=new Node(0);
+        Node tail= dummy;
+
+        while(l1 != null && l2 != null){
+            if(l1.data <= l2.data){
+                tail.next=l1;
+                l1=l1.next;
+            }else{
+                tail.next=l2;
+                l2=l2.next;
+            }
+            tail=tail.next;
         }
 
-        if(l1.data <= l2.data){
-            result=l1;
-            result.next=mergeTwoLists(l1.next, l2);
-        }else{
-            result=l2;
-            result.next=mergeTwoLists(l1, l2.next);
+        if(l1 != null){
+            tail.next=l1;
         }
-        return result;
-    }
-
-    //public static Node mergeK(Node[] lists, int k){  // Time complexity - O( k n ) bcz of thsi
-        Node result= lists[0];
-        for(int i=1;i<k;i++){
-            result=mergeTwoLists(result, lists[i]);
+        if(l2 != null){
+            tail.next=l2;
         }
-        return result;
-    }
+        return dummy.next;
+     }
 
-    // optimized mergeK
+    // public static Node mergeK(Node[] lists, int k){  // TC O(K x N)
+    //     Node result= lists[0];
+    //     for(int i=1;i<k;i++){
+    //         result=mergeTwoLists(result, lists[i]);
+    //     }
+    //     return result;
+    // }
+
+    // optimized mergeK -O(nlogk)
     public static Node mergeK(Node[] lists){
         int n=lists.length;
         if(n==0){
