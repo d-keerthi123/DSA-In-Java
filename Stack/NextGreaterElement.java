@@ -22,8 +22,8 @@ public class NextGreaterElement {
         int nextGreater[]=new int[n];
         Stack<Integer> s=new Stack<>(); // stores indices
         
-        //loop is rum backwards bcz we want to track the right side elements before itself
-        //  nextGreaterElement from left side - in that case we would run the loop from foward to track the elements from left side
+        //loop is run backwards bcz we want to track the right side elements before itself
+        //if we want to find nextGreaterElement from left side - in that case we would run the loop from foward to track the elements from left side
         for(int i= n-1;i>=0 ;i--){
             while(!s.isEmpty() && arr[s.peek()] <= arr[i]){
                 s.pop();
