@@ -24,14 +24,12 @@ public class BSTSearch {
         else{
             return searchBST(root.right, key);
         }
-
-        
-        
     }
     public static void main(String[] args) {
         Node root=new Node(8);
         root.left=new Node(5);
         root.right=new Node(10);
+        
         System.out.println(searchBST(root, 6));
     }
 }
