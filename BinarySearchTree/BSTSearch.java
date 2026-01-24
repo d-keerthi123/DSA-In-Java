@@ -1,3 +1,5 @@
+//Time Complexity O(H)- H is the height of the tree
+
 public class BSTSearch {
     static class Node{
         int data;
