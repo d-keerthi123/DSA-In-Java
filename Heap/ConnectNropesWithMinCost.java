@@ -1,6 +1,7 @@
+
 import java.util.PriorityQueue;
 
-public class CoonectNropesWithMinCost {
+public class ConnectNropesWithMinCost {
     public static void main(String[] args) {
         int[] ropes={4,3,3,2,6};
 
