@@ -142,8 +142,8 @@ public class LinkedList1 {
         return helper(head,key);
     }
     public void reverse(){
-        Node prev=null;
-        Node curr=tail=head;
+        Node prev=null; //initally
+        Node curr=tail=head; //In java values get assigned from right to left so head's value is stored in tail and then in curr
          // same as 
          // Node curr=head; 
         // tail=head;
